@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    volumes:
+      - ./:/app
+    ports:
+      - "3000:3000"
+    links:
+      - db
+    env_file:
+      - .env
+  
+  db:
+    image: mariadb:latest
+    ports: 
+     - "3307:3306"
+    environment:
+      - MARIADB_ROOT_PASSWORD=mariadb
